@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>journal</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Shadows+Into+Light&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  background: #e9e1d6;
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* DIARY PAPER */
+.diary {
+  width: 750px;
+  background: #fbf6ee;
+  padding: 50px;
+  box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+  position: relative;
+  border-radius: 6px;
+}
+
+/* PAPER TEXTURE */
+.diary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    radial-gradient(circle at 20% 30%, #000, transparent 40%),
+    radial-gradient(circle at 70% 60%, #000, transparent 45%);
+}
+
+/* TITLE */
+h1 {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  color: #7e6aa8;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* ENTRY STYLE */
+.entry {
+  margin-bottom: 35px;
+  position: relative;
+}
+
+/* HANDWRITTEN DATE */
+.date {
+  font-family: 'Shadows Into Light', cursive;
+  color: #7e6aa8;
+  font-size: 1.2em;
+}
+
+/* MAIN TEXT */
+.text {
+  margin-top: 8px;
+  line-height: 1.7;
+  font-size: 0.95em;
+}
+
+/* HANDWRITTEN EMPHASIS */
+.handwritten {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.3em;
+}
+
+/* MARGIN SCRIBBLE FEEL */
+.entry::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  background: #cbb7f5;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+/* POLAROID */
+.polaroid {
+  width: 180px;
+  background: white;
+  padding: 10px;
+  margin-top: 10px;
+  transform: rotate(-2deg);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.polaroid img {
+  width: 100%;
+}
+
+/* NOTE / SECRET */
+.note {
+  margin-top: 15px;
+  display: none;
+  color: #7e6aa8;
+  font-family: 'Shadows Into Light', cursive;
+  font-size: 1.2em;
+}
+
+/* BUTTON */
+button {
+  background: #8b7cc8;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* SOFT FLOATING PETALS (VERY SUBTLE NOW) */
+.petal {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: #cbb7f5;
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: float 16s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-10vh); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="diary">
+
+<h1>journal</h1>
+
+<!-- ENTRY 1 -->
+<div class="entry">
+  <div class="date">a quiet thought</div>
+  <div class="text">
+    Some people don’t need to be loud to take up space in your life.
+    They just… stay in your thoughts in a calm way.
+  </div>
+</div>
+
+<!-- ENTRY 2 -->
+<div class="entry">
+  <div class="date">random note</div>
+  <div class="text handwritten">
+    Your smile and laughs are enough to make darkness shine
+  </div>
+</div>
+
+<!-- ENTRY 3 -->
+<div class="entry">
+  <div class="date">memory</div>
+  <div class="polaroid">
+    <img src="https://via.placeholder.com/180">
+    <p style="font-size:12px;">a moment I kept thinking about</p>
+  </div>
+</div>
+
+<!-- ENTRY 4 (SIMPLE INTERACTION, NOT GIMMICKY) -->
+<div class="entry">
+  <button onclick="showNote()">open a small note</button>
+  <div class="note" id="note">
+    I really love your scent, your scent immediately makes me feel warm inside.
+  </div>
+</div>
+
+<!-- FINAL ENTRY -->
+<div class="entry">
+  <div class="date">for may 12</div>
+  <div class="text">
+    happy birthday.  
+    I’m really glad I know you.
+  </div>
+</div>
+
+</div>
+
+<script>
+
+/* SIMPLE NOTE REVEAL */
+function showNote() {
+  document.getElementById("note").style.display = "block";
+}
+
+/* VERY SUBTLE PETALS */
+function createPetal() {
+  const p = document.createElement("div");
+  p.classList.add("petal");
+  p.style.left = Math.random() * 100 + "vw";
+  p.style.animationDuration = (10 + Math.random() * 8) + "s";
+  document.body.appendChild(p);
+  setTimeout(() => p.remove(), 16000);
+}
+
+setInterval(createPetal, 500);
+
+</script>
+
+</body>
+</html>
